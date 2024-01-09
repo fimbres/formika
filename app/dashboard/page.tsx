@@ -1,10 +1,12 @@
 import React, { Suspense } from 'react'
 import { CrumpledPaperIcon, EyeOpenIcon, PaperPlaneIcon, RocketIcon } from '@radix-ui/react-icons';
 
-import { GetFormStats } from '@/actions/form'
+import { GetAllForms, GetFormStats } from '@/actions/form'
 import StatCard from '@/components/stat-card';
 import { Separator } from '@/components/ui/separator';
 import CreateFormButton from '@/components/create-form-button';
+import FormCard from '@/components/form-card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 async function Home() {
   return (
@@ -18,6 +20,10 @@ async function Home() {
       <Separator className='my-6' />
       <h2 className='text-4xl font-bold col-span-2'>Your forms</h2>
       <div className='w-full pt-8 gap-4 grid grid-cols-1 md:grid-cols-2'>
+        <Suspense fallback={[1, 2, 3].map((number) => <Skeleton key={number} className='h-[190px] w-full rounded-md' />)}>
+          {/* @ts-expect-error Server Component */}
+          <CardFormsWrapper />
+        </Suspense>
         <CreateFormButton />
       </div>
     </main>
@@ -28,6 +34,21 @@ async function CardStatsWrapper() {
   const stats = await GetFormStats();
 
   return <StatsCards loading={false} data={stats} />
+}
+
+async function CardFormsWrapper() {
+  const forms = await GetAllForms();
+
+  return (
+    <>
+      {forms.map((form, index) => (
+        <FormCard
+          key={index}
+          form={form}
+        />
+      ))}
+    </>
+  );
 }
 
 interface StatsCardsProps {
