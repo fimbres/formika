@@ -48,14 +48,14 @@ function FormCard({ form }: FormCardProp) {
       <CardFooter>
         {form.published && (
           <Button asChild className="w-full mt-2 text-md gap-4">
-            <Link href={`/forms/${form.id}`}>
+            <Link href={`/dashboard/forms/${form.id}`}>
               View Submissions <ArrowRightIcon />
             </Link>
           </Button>
         )}
         {!form.published && (
           <Button asChild variant={"secondary"} className="w-full mt-2 text-md gap-4">
-            <Link href={`/builder/${form.id}`}>
+            <Link href={`/dashboard/builder/${form.id}`}>
               Edit Form <Pencil1Icon />
             </Link>
           </Button>
