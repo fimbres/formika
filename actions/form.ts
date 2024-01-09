@@ -44,6 +44,7 @@ export async function GetFormStats() {
 
 export async function CreateForm(data: { name: string, description?: string }) {
   const user = await currentUser();
+  
   if (!user) {
     throw new UserNotFoundError();
   }
@@ -63,4 +64,21 @@ export async function CreateForm(data: { name: string, description?: string }) {
   }
 
   return form.id;
+}
+
+export async function GetAllForms() {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new UserNotFoundError();
+  }
+
+  return await prisma.form.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 }
