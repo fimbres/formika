@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import { ReloadIcon } from '@radix-ui/react-icons';
+import { FileIcon, ReloadIcon } from '@radix-ui/react-icons';
 
 import {
   Dialog,
@@ -65,7 +65,13 @@ function CreateFormButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Create New Form</Button>
+      <Button
+          variant={"outline"}
+          className="group border border-primary/20 w-full h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4"
+        >
+          <FileIcon className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
+          <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">Create New</p>
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

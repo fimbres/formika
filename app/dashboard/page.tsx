@@ -17,8 +17,9 @@ async function Home() {
       </Suspense>
       <Separator className='my-6' />
       <h2 className='text-4xl font-bold col-span-2'>Your forms</h2>
-      <Separator className='my-6' />
-      <CreateFormButton />
+      <div className='w-full pt-8 gap-4 grid grid-cols-1 md:grid-cols-2'>
+        <CreateFormButton />
+      </div>
     </main>
   )
 }
