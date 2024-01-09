@@ -4,6 +4,7 @@ import { CrumpledPaperIcon, EyeOpenIcon, PaperPlaneIcon, RocketIcon } from '@rad
 import { GetFormStats } from '@/actions/form'
 import StatCard from '@/components/stat-card';
 import { Separator } from '@/components/ui/separator';
+import CreateFormButton from '@/components/create-form-button';
 
 async function Home() {
   return (
@@ -17,6 +18,7 @@ async function Home() {
       <Separator className='my-6' />
       <h2 className='text-4xl font-bold col-span-2'>Your forms</h2>
       <Separator className='my-6' />
+      <CreateFormButton />
     </main>
   )
 }
