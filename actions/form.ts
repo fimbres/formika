@@ -41,3 +41,26 @@ export async function GetFormStats() {
     bounceRate
   };
 }
+
+export async function CreateForm(data: { name: string, description?: string }) {
+  const user = await currentUser();
+  if (!user) {
+    throw new UserNotFoundError();
+  }
+
+  const { name, description } = data;
+
+  const form = await prisma.form.create({
+    data: {
+      userId: user.id,
+      name,
+      description,
+    },
+  });
+
+  if (!form) {
+    throw new Error("something went wrong");
+  }
+
+  return form.id;
+}
