@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { CrumpledPaperIcon, EyeOpenIcon, PaperPlaneIcon, RocketIcon } from '@radix-ui/react-icons';
 
-import { GetAllForms, GetFormStats } from '@/actions/form'
+import { GetForms, GetFormStats } from '@/actions/form'
 import StatCard from '@/components/stat-card';
 import { Separator } from '@/components/ui/separator';
 import CreateFormButton from '@/components/create-form-button';
@@ -37,7 +37,7 @@ async function CardStatsWrapper() {
 }
 
 async function CardFormsWrapper() {
-  const forms = await GetAllForms();
+  const forms = await GetForms();
 
   return (
     <>
