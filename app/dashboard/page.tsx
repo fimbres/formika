@@ -14,14 +14,12 @@ async function Home() {
       <h1 className='text-4xl font-semibold mt-8'>Welcome to Formika</h1>
       <p className='mt-2 text-gray-400'>Build forms without the tears!</p>
       <Suspense fallback={<StatsCards loading={true} />}>
-        {/* @ts-expect-error Server Component */}
         <CardStatsWrapper />
       </Suspense>
       <Separator className='my-6' />
       <h2 className='text-4xl font-bold col-span-2'>Your forms</h2>
       <div className='w-full pt-8 gap-4 grid grid-cols-1 md:grid-cols-2'>
         <Suspense fallback={[1, 2, 3].map((number) => <Skeleton key={number} className='h-[190px] w-full rounded-md' />)}>
-          {/* @ts-expect-error Server Component */}
           <CardFormsWrapper />
         </Suspense>
         <CreateFormButton />

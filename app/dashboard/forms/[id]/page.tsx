@@ -83,7 +83,6 @@ async function FormDetailPage({
       </div>
 
       <div className="container pt-10">
-        {/* @ts-expect-error Server Component */}
         <SubmissionsTable id={form.id} />
       </div>
     </>
