@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react'
-import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
-import { FileIcon, ReloadIcon } from '@radix-ui/react-icons';
+import React from 'react';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { z } from "zod";
 
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -24,11 +24,11 @@ import {
   FormLabel,
   FormMessage
 } from './ui/form'
-import { Button } from './ui/button'
 import { Textarea } from './ui/textarea'
 import { Input } from './ui/input'
 import { toast } from './ui/use-toast'
 import { CreateForm } from '@/actions/form';
+import { PlusIcon, ReloadIcon } from '@radix-ui/react-icons';
 
 const formSchema = z.object({
   name: z.string().min(4),
@@ -61,28 +61,26 @@ function CreateFormButton() {
       });
     }
   }
-  
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <Button
+        <Button
           variant={"outline"}
-          className="group border border-primary/20 w-full h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4"
+          className="group border border-primary/20 h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4"
         >
-          <FileIcon className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
-          <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">Create New</p>
+          <PlusIcon className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
+          <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">Create new form</p>
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New Form</DialogTitle>
-          <DialogDescription>
-            Create a new form to start collecting responses from users around all the world
-          </DialogDescription>
+          <DialogTitle>Create form</DialogTitle>
+          <DialogDescription>Create a new form to start collecting responses</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
-          <FormField
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+            <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
@@ -118,7 +116,7 @@ function CreateFormButton() {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
-export default CreateFormButton
+export default CreateFormButton;
